@@ -7,11 +7,11 @@ import edu.dhbw.andobjviewer.models.Model;
 
 public class Dreamspark extends MiCharacter implements FuncionesNaves{
 
-	static String model = "sacapunta2.obj";
-	static String pattern = "Dreamspark.patt";
+	static String model_str = "sacapunta2.obj";
+	static String pattern_str = "Dreamspark.patt";
 	
 	public Dreamspark() {
-		super(Global.getModel(model), pattern);
+		super(Global.getModel(model_str), pattern_str);
 	}
 
 	@Override

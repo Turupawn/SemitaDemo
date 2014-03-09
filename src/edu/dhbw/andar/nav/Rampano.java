@@ -7,11 +7,11 @@ import edu.dhbw.andobjviewer.graphics.FuncionesNaves;
 
 public class Rampano extends MiCharacter implements FuncionesNaves{
 	
-	static String model = "navealienigena.obj";
-	static String pattern = "Rampano.patt";
+	static String model_str = "navealienigena.obj";
+	static String pattern_str = "Rampano.patt";
 	
 	public Rampano() {
-		super(Global.getModel(model), pattern);
+		super(Global.getModel(model_str), pattern_str);
 		
 	}
 

@@ -7,11 +7,11 @@ import edu.dhbw.andobjviewer.models.Model;
 
 public class Wing extends MiCharacter implements FuncionesNaves{
 	
-	static String model = "SilverLight.obj";
-	static String pattern = "Wing.patt";
+	static String model_str = "SilverLight.obj";
+	static String pattern_str = "Wing.patt";
 	
 	public Wing() {
-		super(Global.getModel(model), pattern);
+		super(Global.getModel(model_str), pattern_str);
 		
 	}
 

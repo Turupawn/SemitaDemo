@@ -1,15 +1,18 @@
 package edu.dhbw.andar.pub;
 
 import java.io.BufferedReader;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
 
 import android.content.res.AssetManager;
-
 import edu.dhbw.andar.ARToolkit;
-import edu.dhbw.andar.nav.*;
-import edu.dhbw.andobjviewer.graphics.MiCharacter;
+import edu.dhbw.andar.nav.Dreamspark;
+import edu.dhbw.andar.nav.Explosion;
+import edu.dhbw.andar.nav.Explosion2;
+import edu.dhbw.andar.nav.Explosion3;
+import edu.dhbw.andar.nav.Explosion4;
+import edu.dhbw.andar.nav.Hunter;
+import edu.dhbw.andar.nav.Rampano;
+import edu.dhbw.andar.nav.StartupWeekend;
+import edu.dhbw.andar.nav.Wing;
 import edu.dhbw.andobjviewer.models.Model;
 import edu.dhbw.andobjviewer.parser.ObjParser;
 import edu.dhbw.andobjviewer.util.AssetsFileUtil;
@@ -20,11 +23,18 @@ public class Global {
 	
 	public static ARToolkit artoolkit;
 	public static AssetManager am;
+	
+	
+	
 	public static Hunter hunter;
 	public static Rampano rampano;
 	public static Wing wing;
 	public static Dreamspark dreamspark;
 	public static StartupWeekend sw;
+	public static Explosion explosion;
+	public static Explosion2 explosion2;
+	public static Explosion3 explosion3;
+	public static Explosion4 explosion4;
 	
 	public static Model getModel(String obj_path)
 	{

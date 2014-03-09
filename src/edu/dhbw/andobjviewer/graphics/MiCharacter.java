@@ -32,6 +32,7 @@ public class MiCharacter extends Model3D{
 	public void draw(GL10 gl) {
 		super.draw(gl);
 		selected.model.setYrot(10.0f);
+//		Global.explosion.model.setScale(0.02f);
 	}
 	
 

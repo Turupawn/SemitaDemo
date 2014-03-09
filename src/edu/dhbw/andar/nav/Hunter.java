@@ -7,11 +7,11 @@ import edu.dhbw.andobjviewer.models.Model;
 
 public class Hunter extends MiCharacter implements FuncionesNaves {
 	
-	static String model = "Wing.obj";
-	static String pattern = "Hunter.patt";
+	static String model_str = "rocket.obj";
+	static String pattern_str = "Hunter.patt";
 	
 	public Hunter() {
-		super(Global.getModel(model), pattern);
+		super(Global.getModel(model_str), pattern_str);
 	}
 	
 	@Override

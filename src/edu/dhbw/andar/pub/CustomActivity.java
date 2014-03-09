@@ -1,35 +1,39 @@
 package edu.dhbw.andar.pub;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
 
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
+import android.media.MediaPlayer;
+import android.nfc.cardemulation.OffHostApduService;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.widget.Toast;
-import edu.dhbw.andar.ARToolkit;
 import edu.dhbw.andar.AndARActivity;
-import edu.dhbw.andar.exceptions.AndARException;
-import edu.dhbw.andar.nav.*;
-import edu.dhbw.andobjviewer.graphics.HP;
-import edu.dhbw.andobjviewer.graphics.MiCharacter;
-import edu.dhbw.andobjviewer.graphics.Model3D;
+import edu.dhbw.andar.nav.Dreamspark;
+import edu.dhbw.andar.nav.Explosion;
+import edu.dhbw.andar.nav.Explosion2;
+import edu.dhbw.andar.nav.Explosion3;
+import edu.dhbw.andar.nav.Explosion4;
+import edu.dhbw.andar.nav.Hunter;
+import edu.dhbw.andar.nav.Rampano;
+import edu.dhbw.andar.nav.StartupWeekend;
+import edu.dhbw.andar.nav.Wing;
 import edu.dhbw.andobjviewer.models.Model;
 import edu.dhbw.andobjviewer.parser.ObjParser;
-import edu.dhbw.andobjviewer.parser.ParseException;
 import edu.dhbw.andobjviewer.util.AssetsFileUtil;
 import edu.dhbw.andobjviewer.util.BaseFileUtil;
 import edu.semita.demo.R;
-
 /**
  * Example of an application that makes use of the AndAR toolkit.
  * @author Tobi
@@ -45,11 +49,25 @@ public class CustomActivity extends AndARActivity {
 	
 	boolean created =  false;
 	
+	MediaPlayer mp;
+	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		Toast.makeText(CustomActivity.this, "Loading.", Toast.LENGTH_LONG ).show();
+		
 		CustomRenderer renderer = new CustomRenderer();//optional, may be set to null
 		Global.am=getResources().getAssets();
+		
+
+
+		   mp = MediaPlayer.create(this, R.drawable.explosion);
+
+
+		
+	    
 		
 		super.setNonARRenderer(renderer);//or might be omited
 		try
@@ -70,6 +88,18 @@ public class CustomActivity extends AndARActivity {
 			
 			Global.sw = new StartupWeekend();
 			Global.artoolkit.registerARObject(Global.sw);
+			
+			Global.explosion = new Explosion();
+			Global.artoolkit.registerARObject(Global.explosion);
+			
+			Global.explosion2 = new Explosion2();
+			Global.artoolkit.registerARObject(Global.explosion2);
+			
+			Global.explosion3 = new Explosion3();
+			Global.artoolkit.registerARObject(Global.explosion3);
+			
+			Global.explosion4 = new Explosion4();
+			Global.artoolkit.registerARObject(Global.explosion4);
 			
 		}catch (Exception ex){
 			//handle the exception, that means: show the user what happened
@@ -188,7 +218,7 @@ public class CustomActivity extends AndARActivity {
 	@Override
 	public boolean onTouchEvent(MotionEvent event)
 	{
-		
+		super.onTouchEvent(event);
 		/*super.onTouchEvent(event);
 		if(monstruo1.isVisible() && !monstruo2.isVisible() && monstruo1.model.scale==4)
 		{
@@ -203,6 +233,27 @@ public class CustomActivity extends AndARActivity {
 			monstruo1.model.scale=4;
 			monstruo2.hp.decrese(10);
 		}*/
+		
+		if(event.getAction()==MotionEvent.ACTION_DOWN)
+		{
+		    try {
+		        mp.start();
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
+			
+			if(Global.hunter.isVisible())
+				Global.explosion.explotando=true;
+			if(Global.rampano.isVisible())
+				Global.explosion2.explotando=true;
+			if(Global.wing.isVisible())
+				Global.explosion3.explotando=true;
+			if(Global.dreamspark.isVisible())
+				Global.explosion4.explotando=true;
+		}
+//		Global.explosion.model.scale = 7;
+//		System.exit(0);
+		
 		return true;
 	}
 	
