@@ -22,7 +22,7 @@ public class Explosion4 extends Model3D{
 			this.model.setScale(0.8f);
 		if(this.model.scale>=7)
 		{
-			Global.dreamspark.model.scale=0;
+//			Global.dreamspark.model.scale=0;
 			explotando=false;
 		}
 		this.model.setScale(-0.3f);

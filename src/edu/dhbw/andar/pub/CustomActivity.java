@@ -1,17 +1,14 @@
 package edu.dhbw.andar.pub;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
 
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.media.MediaPlayer;
-import android.nfc.cardemulation.OffHostApduService;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,15 +17,15 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.widget.Toast;
 import edu.dhbw.andar.AndARActivity;
-import edu.dhbw.andar.nav.Dreamspark;
 import edu.dhbw.andar.nav.Explosion;
+import edu.dhbw.andar.nav.Explosion1A;
 import edu.dhbw.andar.nav.Explosion2;
-import edu.dhbw.andar.nav.Explosion3;
-import edu.dhbw.andar.nav.Explosion4;
-import edu.dhbw.andar.nav.Hunter;
-import edu.dhbw.andar.nav.Rampano;
-import edu.dhbw.andar.nav.StartupWeekend;
-import edu.dhbw.andar.nav.Wing;
+import edu.dhbw.andar.nav.Explosion2A;
+import edu.dhbw.andar.nav.Jugador1;
+import edu.dhbw.andar.nav.Jugador2;
+import edu.dhbw.andar.nav.Poder1;
+import edu.dhbw.andar.nav.Poder2;
+import edu.dhbw.andar.nav.Terreno;
 import edu.dhbw.andobjviewer.models.Model;
 import edu.dhbw.andobjviewer.parser.ObjParser;
 import edu.dhbw.andobjviewer.util.AssetsFileUtil;
@@ -74,32 +71,57 @@ public class CustomActivity extends AndARActivity {
 		{
 			Global.artoolkit = super.getArtoolkit();
 
-			Global.wing = new Wing();
-			Global.artoolkit.registerARObject(Global.wing);
+//			Global.wing = new Wing();
+//			Global.artoolkit.registerARObject(Global.wing);
+//			
+//			Global.hunter = new Hunter();
+//			Global.artoolkit.registerARObject(Global.hunter);
+//			
+//			Global.rampano = new Rampano();
+//			Global.artoolkit.registerARObject(Global.rampano);
+//			
+//			Global.dreamspark = new Dreamspark();
+//			Global.artoolkit.registerARObject(Global.dreamspark);
+//			
+//			Global.sw = new StartupWeekend();
+//			Global.artoolkit.registerARObject(Global.sw);
+//			
+//			Global.explosion = new Explosion();
+//			Global.artoolkit.registerARObject(Global.explosion);
+//			
+//			Global.explosion2 = new Explosion2();
+//			Global.artoolkit.registerARObject(Global.explosion2);
+//			
+//			Global.explosion3 = new Explosion3();
+//			Global.artoolkit.registerARObject(Global.explosion3);
+//			
+//			Global.explosion4 = new Explosion4();
+//			Global.artoolkit.registerARObject(Global.explosion4);
+			Global.jugador1=new Jugador1();
+			Global.artoolkit.registerARObject(Global.jugador1);
+			Global.jugador2=new Jugador2();
+			Global.artoolkit.registerARObject(Global.jugador2);
 			
-			Global.hunter = new Hunter();
-			Global.artoolkit.registerARObject(Global.hunter);
-			
-			Global.rampano = new Rampano();
-			Global.artoolkit.registerARObject(Global.rampano);
-			
-			Global.dreamspark = new Dreamspark();
-			Global.artoolkit.registerARObject(Global.dreamspark);
-			
-			Global.sw = new StartupWeekend();
-			Global.artoolkit.registerARObject(Global.sw);
-			
-			Global.explosion = new Explosion();
-			Global.artoolkit.registerARObject(Global.explosion);
+			Global.explosion1 = new Explosion();
+			Global.artoolkit.registerARObject(Global.explosion1);
 			
 			Global.explosion2 = new Explosion2();
 			Global.artoolkit.registerARObject(Global.explosion2);
 			
-			Global.explosion3 = new Explosion3();
-			Global.artoolkit.registerARObject(Global.explosion3);
+			Global.explosion1a = new Explosion1A();
+			Global.artoolkit.registerARObject(Global.explosion1a);
 			
-			Global.explosion4 = new Explosion4();
-			Global.artoolkit.registerARObject(Global.explosion4);
+			Global.explosion2a = new Explosion2A();
+			Global.artoolkit.registerARObject(Global.explosion2a);
+			
+			Global.poder1 = new Poder1();
+			Global.artoolkit.registerARObject(Global.poder1);
+			
+			Global.poder2 = new Poder2();
+			Global.artoolkit.registerARObject(Global.poder2);
+			
+			Global.terreno = new Terreno();
+			Global.artoolkit.registerARObject(Global.terreno);
 			
 		}catch (Exception ex){
 			//handle the exception, that means: show the user what happened
@@ -242,14 +264,30 @@ public class CustomActivity extends AndARActivity {
 		        e.printStackTrace();
 		    }
 			
-			if(Global.hunter.isVisible())
-				Global.explosion.explotando=true;
-			if(Global.rampano.isVisible())
-				Global.explosion2.explotando=true;
-			if(Global.wing.isVisible())
-				Global.explosion3.explotando=true;
-			if(Global.dreamspark.isVisible())
-				Global.explosion4.explotando=true;
+//			if(Global.jugador1.isVisible())
+//				Global.explosion1.explotando=true;
+//			if(Global.jugador2.isVisible())
+//				Global.explosion2.explotando=true;
+			if(Global.poder1.isVisible())
+			{
+				if(Global.turno_jugador_1)
+					Global.explosion1.explotando=true;
+				else
+					Global.explosion2.explotando=true;
+				Global.turno_jugador_1=!Global.turno_jugador_1;
+			}else if(Global.poder2.isVisible())
+			{
+				if(Global.turno_jugador_1)
+					Global.explosion1a.explotando=true;
+				else
+					Global.explosion2a.explotando=true;
+				Global.turno_jugador_1=!Global.turno_jugador_1;
+			}
+			
+//			if(Global.wing.isVisible())
+//				Global.explosion3.explotando=true;
+//			if(Global.dreamspark.isVisible())
+//				Global.explosion4.explotando=true;
 		}
 //		Global.explosion.model.scale = 7;
 //		System.exit(0);

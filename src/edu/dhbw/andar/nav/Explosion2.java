@@ -22,7 +22,11 @@ public class Explosion2 extends Model3D{
 			this.model.setScale(0.8f);
 		if(this.model.scale>=7)
 		{
-			Global.rampano.model.scale=0;
+			Global.jugador2.hp.decrese(20);
+			if(Global.jugador2.hp.current<=0)
+			{
+				Global.jugador2.model.scale=0;
+			}
 			explotando=false;
 		}
 		this.model.setScale(-0.3f);
