@@ -10,4 +10,5 @@ public interface FuncionesNaves {
 	void armaSeis();
 	void kamikaze();
 	void specialBuff();
+	void moverY();
 }

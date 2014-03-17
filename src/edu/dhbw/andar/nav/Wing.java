@@ -67,5 +67,11 @@ public class Wing extends MiCharacter implements FuncionesNaves{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void moverY() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

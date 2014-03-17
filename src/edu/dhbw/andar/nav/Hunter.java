@@ -68,4 +68,10 @@ public class Hunter extends MiCharacter implements FuncionesNaves {
 		
 	}
 
+	@Override
+	public void moverY() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

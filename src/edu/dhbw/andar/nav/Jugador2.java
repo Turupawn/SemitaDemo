@@ -1,19 +1,25 @@
 package edu.dhbw.andar.nav;
 
-import edu.dhbw.andar.pub.Global;
-import edu.dhbw.andobjviewer.models.Model;
-import edu.dhbw.andobjviewer.graphics.MiCharacter;
-import edu.dhbw.andobjviewer.graphics.FuncionesNaves;
+import javax.microedition.khronos.opengles.GL10;
 
-public class Rampano extends MiCharacter implements FuncionesNaves{
+import edu.dhbw.andar.pub.Global;
+import edu.dhbw.andobjviewer.graphics.FuncionesNaves;
+import edu.dhbw.andobjviewer.graphics.MiCharacter;
+
+public class Jugador2 extends MiCharacter implements FuncionesNaves{
 	
 	static String model_str = "navealienigena.obj";
 	static String pattern_str = "Rampano.patt";
-	//Bala bala;
+	public Bala bala;
+	boolean moveY = false;
 	
-	public Rampano() {
-		super(Global.getModel(model_str), pattern_str);
-		
+	public Jugador2()
+	{
+		super(Global.getModel(model_str),pattern_str);
+	}
+	
+	public String getPattName(){
+		return pattern_str;
 	}
 
 	@Override
@@ -24,7 +30,13 @@ public class Rampano extends MiCharacter implements FuncionesNaves{
 
 	@Override
 	public void armaUno() {
-		//this.bala = new Bala(pattern_str);
+		this.bala = new Bala(pattern_str);
+		try{
+			Global.artoolkit.registerARObject(this.bala);
+			this.bala.model.setYrot(90f);
+		}catch(Exception e){
+			
+		}
 		
 	}
 
@@ -73,7 +85,33 @@ public class Rampano extends MiCharacter implements FuncionesNaves{
 	@Override
 	public void moverY() {
 		// TODO Auto-generated method stub
-		
+		if (moveY==false){
+			moveY=true;
+		}
 	}
-
+	
+	@Override
+	public void draw(GL10 gl){
+		super.draw(gl);
+		
+		if(this.hp.current<=0){
+			this.model.scale=0;
+		}
+		
+		if(moveY){
+			this.model.setYpos(-1f);
+			
+			if(this.model.ypos<-20){
+				moveY = false;
+			}
+		}else{
+			this.model.ypos=0f;
+		}
+		
+		if(this.moveY && Global.jugador1.moveY){
+			if(this.model.ypos<=-20 || Global.jugador1.model.ypos<=-20){
+				this.hp.decrese(Global.jugador1.hp.current);
+			}
+		}
+	}
 }
